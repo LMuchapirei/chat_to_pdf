@@ -56,7 +56,6 @@ const Dashboard = ()=>{
                             </div>
                             <div className="flex items-center gap-2">
                                 <MessageSquare  className="h-4 w-4"/>
-                                mockingjay
                             </div>
                             <Button 
                                 onClick={()=>deleteFile({id:file.id})}
