@@ -5,9 +5,11 @@
         "hookform",
         "Kinde",
         "lucide",
+        "OPENAI",
         "simplebar",
         "tanstack",
         "trpc",
-        "uploadthing"
+        "uploadthing",
+        "vectorize"
     ]
 }
