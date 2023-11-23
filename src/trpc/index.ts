@@ -5,6 +5,7 @@ import { db } from '@/db';
 import { z } from "zod";
 import { fi } from 'date-fns/locale';
 import { INFINITE_QUERY_LIMIT } from '@/config/infinite-query';
+import { absoluteUrl } from '@/lib/utils';
 
 export const appRouter = router({
     authCallback: publicProcedure.query(async () => {
@@ -125,6 +126,20 @@ export const appRouter = router({
         }
       })
       return file
+    }),
+    createPaymentSession:privateProcedure.mutation(async({ctx})=>{
+      const {userId} = ctx
+      const billingUrl = absoluteUrl("/dashboard/billing")
+
+      if(!userId) throw new TRPCError({code:"UNAUTHORIZED"})
+      const dbUser = await db.user.findFirst({
+          where:{
+            id:userId
+          }})
+      
+      if(!dbUser) throw new TRPCError({code:"UNAUTHORIZED"})
+      
+      // other stripe stuff we need to find a payment integration of our own
     })
 })
 
